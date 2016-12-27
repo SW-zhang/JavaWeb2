@@ -38,6 +38,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.id.new_generator_mappings">false</prop>
+                <prop key="hibernate.format_sql">${format_sql}</prop>
                 <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
                 <!-- 命名规则 My_NAME->MyName -->
                 <prop key="hibernate.physical_naming_strategy">com.framework.namestrategy.ImprovedNamingStrategy</prop>

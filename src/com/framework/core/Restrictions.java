@@ -171,21 +171,7 @@ public class Restrictions {
         if (ignoreNull && (value == null || value.isEmpty())) {
             return null;
         }
-        SimpleExpression[] ses = new SimpleExpression[value.size()];
-        int i = 0;
-        for (Object obj : value) {
-            ses[i] = new SimpleExpression(fieldName, obj, Operator.EQ);
-            i++;
-        }
-        if (i == 0) {    //无参情况
-            ses = new SimpleExpression[2];
-            ses[0] = new SimpleExpression(fieldName, null, Operator.ISNULL);
-            ses[1] = new SimpleExpression(fieldName, null, Operator.ISNOTNULL);
-            return LogicalExpression.getInstance(ses, Operator.AND);
-        } else {
-            return LogicalExpression.getInstance(ses, Operator.OR);
-        }
-
+        return returnLogicalExpression(fieldName, value, Operator.EQ);
     }
 
     /**
@@ -201,10 +187,14 @@ public class Restrictions {
         if (ignoreNull && (value == null || value.isEmpty())) {
             return null;
         }
+        return returnLogicalExpression(fieldName, value, Operator.NE);
+    }
+
+    private static LogicalExpression returnLogicalExpression(String fieldName, Collection value, Operator operator) {
         SimpleExpression[] ses = new SimpleExpression[value.size()];
         int i = 0;
         for (Object obj : value) {
-            ses[i] = new SimpleExpression(fieldName, obj, Operator.NE);
+            ses[i] = new SimpleExpression(fieldName, obj, operator);
             i++;
         }
         if (i == 0) {    //无参情况
