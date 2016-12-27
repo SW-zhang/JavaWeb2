@@ -17,9 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by wang on 2016/12/22.
- */
 @Service
 @Transactional(readOnly = true)
 public class DemoService extends BaseService {

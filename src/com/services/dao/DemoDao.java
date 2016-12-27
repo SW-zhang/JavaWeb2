@@ -8,9 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by wang on 2016/12/26.
- */
+@SuppressWarnings("JpaQlInspection")
 public interface DemoDao extends BaseDao<Function, Long> {
 
     @Query(value = "select count(id) from function where path = ?1", nativeQuery = true)
