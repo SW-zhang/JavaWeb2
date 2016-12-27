@@ -34,7 +34,7 @@ public class Restrictions {
      * @param ignoreNull 如果是null或空字符串忽略此参数
      * @return
      */
-    public static SimpleExpression ne(String fieldName, Object value, boolean ignoreNull) {
+    public static SimpleExpression neq(String fieldName, Object value, boolean ignoreNull) {
         if (ignoreNull && StringUtils.isEmpty(value)) return null;
         return new SimpleExpression(fieldName, value, Operator.NE);
     }
@@ -197,7 +197,7 @@ public class Restrictions {
      * @return
      */
     @SuppressWarnings("rawtypes")
-    public static LogicalExpression notIn(String fieldName, Collection value, boolean ignoreNull) {
+    public static LogicalExpression nin(String fieldName, Collection value, boolean ignoreNull) {
         if (ignoreNull && (value == null || value.isEmpty())) {
             return null;
         }

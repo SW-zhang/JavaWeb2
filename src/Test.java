@@ -1,4 +1,6 @@
 import com.alibaba.fastjson.JSON;
+import com.framework.core.PageParam;
+import com.services.dao.DemoDao;
 import com.services.entity.Function;
 import com.services.servcie.DemoService;
 import org.springframework.context.ApplicationContext;
@@ -24,6 +26,7 @@ public class Test {
 //        action.add(new Function());
 //        System.out.println(JSON.toJSONString(action.findAll()));
 //        action.add(new Function());
-        System.out.println(action.findOne(1L));
+//        System.out.println(action.findOne(1L));
+        System.out.println(JSON.toJSONString(action.findAll(new Function(), new PageParam())));
     }
 }

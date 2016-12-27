@@ -33,7 +33,8 @@ public class Criteria<T> implements Specification<T> {
 
             // 将所有条件用 and 联合起来
             if (predicates.size() > 0) {
-                return builder.and(predicates.toArray(new Predicate[predicates.size()]));
+                return builder.and((Predicate[]) predicates.toArray());
+//                return builder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
         }
         return builder.conjunction();
