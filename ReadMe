@@ -1,0 +1,13 @@
+本项目是 springmvc + Spring jpa 开发环境（spring：4.3.4  hibernate：5.2.6）
+本项目要求：
+        jdk 1.8+
+        业务类放在com.services包下
+        controller类的包名必须是web
+        页面放在pages文件夹下
+        static文件夹为静态页面文件
+
+wang.service 包有示例
+
+前台页面框架可以使用sitemesh集成（本项目没有集成）
+
+

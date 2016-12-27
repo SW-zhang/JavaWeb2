@@ -1,0 +1,90 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version ''
+group 'WebDemo'
+
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+}
+
+dependencies {
+//    compile fileTree(dir: 'lib', include: '*.jar')
+
+    compile 'org.slf4j:slf4j-api:1.+'
+    compile 'junit:junit:4.9'
+    compile 'javax.transaction:jta:1.1'
+    // 工具
+    compile 'com.alibaba:fastjson:1.2.17'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'cglib:cglib:3.2.4'
+    compile 'apache-collections:commons-collections:3.1'
+    compile 'apache-beanutils:commons-beanutils:1.7.0'
+
+
+
+    compile 'mysql:mysql-connector-java:6.0.5'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'aspectj:aspectjweaver:1.5.4'
+
+    compile 'org.springframework:spring-aop:4.3.4.RELEASE'
+    compile 'org.springframework:spring-beans:4.3.4.RELEASE'
+    compile 'org.springframework:spring-core:4.3.4.RELEASE'
+    compile 'org.springframework:spring-context:4.3.4.RELEASE'
+    compile 'org.springframework:spring-context-support:4.3.4.RELEASE'
+    compile 'org.springframework:spring-tx:4.3.4.RELEASE'
+    compile 'org.springframework:spring-orm:4.3.4.RELEASE'
+    compile 'org.springframework:spring-web:4.3.4.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.3.4.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.10.6.RELEASE'
+
+//    compile 'org.springframework:spring-asm:4.3.4.RELEASE'
+//    compile 'org.springframework:spring-aspects:4.3.4.RELEASE'
+//    compile 'org.springframework:spring-test:4.3.4.RELEASE'
+//    compile 'org.springframework:spring-oxm:4.3.4.RELEASE'
+
+
+    compile 'org.hibernate:hibernate-entitymanager:5.2.6.Final'
+//    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+
+    compile 'javax.servlet:jstl:1.2'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+sourceSets {
+    main.java.srcDirs = ['src']
+    main.resources.srcDirs = ['src', 'resources']
+}
+
+
+webAppDirName = 'webapp'
+war {
+    baseName = "WebDemo2"
+}
+
+configurations.all {
+    resolutionStrategy {
+        // don't cache changing modules at all
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: 'http://172.16.1.56:8081/nexus/content/groups/public') {
+//            authentication(userName: "deployment", password: "deployment")
+//        }
+//        // 上传到开发环境仓库
+//        snapshotRepository(url: 'http://172.16.1.56:8081/nexus/content/groups/public') {
+//            authentication(userName: "deployment", password: "deployment")
+//        }
+//    }
+//}
