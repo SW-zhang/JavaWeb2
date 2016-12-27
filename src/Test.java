@@ -1,4 +1,5 @@
 import com.alibaba.fastjson.JSON;
+import com.services.entity.Function;
 import com.services.servcie.DemoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -21,6 +22,8 @@ public class Test {
 //        System.out.println(JSON.toJSONString(page));
 //        System.out.println(JSON.toJSONString(action.findAll(Arrays.asList("#"))));
 //        action.add(new Function());
-        System.out.println(JSON.toJSONString(action.findAll()));
+//        System.out.println(JSON.toJSONString(action.findAll()));
+//        action.add(new Function());
+        System.out.println(action.findOne(1L));
     }
 }

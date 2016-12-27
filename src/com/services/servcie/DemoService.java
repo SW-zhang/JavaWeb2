@@ -21,7 +21,7 @@ import java.util.List;
  * Created by wang on 2016/12/22.
  */
 @Service
-@Transactional(rollbackFor = {Exception.class})
+@Transactional(readOnly = true)
 public class DemoService extends BaseService {
 
     @Autowired
@@ -71,13 +71,13 @@ public class DemoService extends BaseService {
         return entityManager.find("select name,parent_id from function");
     }
 
-    public void add(Function function) throws Exception {
+    @Transactional
+    public void add(Function function) {
         function.setId(null);
         function.setCreateTime(new Date());
         function.setName("测试444");
         function.setPath("#####");
         demoDao.save(function);
-        throw new Exception("s");
     }
 
     public List<Function> list() {

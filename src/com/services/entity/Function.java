@@ -17,7 +17,6 @@ public class Function implements Serializable {
     private Integer level; // 级别
     private String path; // 功能路径
     private Integer status; // 状态 0：不可用 1：可用
-    @Column(name = "create_time")
     private Date createTime; // 创建时间
 
     public Long getId() {
