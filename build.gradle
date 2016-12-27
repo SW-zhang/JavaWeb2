@@ -7,7 +7,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 version ''
-group 'WebDemo'
+group 'JavaWeb'
 
 repositories {
     maven {
@@ -68,7 +68,7 @@ sourceSets {
 
 webAppDirName = 'webapp'
 war {
-    baseName = "WebDemo2"
+    baseName = "JavaWeb2"
 }
 
 configurations.all {
