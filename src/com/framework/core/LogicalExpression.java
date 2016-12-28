@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 逻辑条件表达式 用于复杂条件时使用，如但属性多对应值的OR查询等
+ * 逻辑条件表达式 用于复杂条件时使用，如多属性多对应值的OR查询等
  */
 public class LogicalExpression implements Criterion {
     private Criterion[] criterion;    // 逻辑表达式中包含的表达式

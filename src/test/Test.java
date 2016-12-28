@@ -1,3 +1,5 @@
+package test;
+
 import com.alibaba.fastjson.JSON;
 import com.framework.core.PageParam;
 import com.services.dao.DemoDao;
