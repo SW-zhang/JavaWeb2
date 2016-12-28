@@ -1,31 +1,22 @@
 package com.services.entity;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import com.framework.id.IdEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "function")
-public class Function implements Serializable {
+public class Function extends IdEntity {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name; // 功能模块名称
     private Long parent_id; // 父功能模块id
     private Integer level; // 级别
     private String path; // 功能路径
     private Integer status; // 状态 0：不可用 1：可用
     private Date createTime; // 创建时间
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -80,22 +71,20 @@ public class Function implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Function demo = (Function) o;
+        Function function = (Function) o;
 
-        if (id != null ? !id.equals(demo.id) : demo.id != null) return false;
-        if (name != null ? !name.equals(demo.name) : demo.name != null) return false;
-        if (parent_id != null ? !parent_id.equals(demo.parent_id) : demo.parent_id != null) return false;
-        if (level != null ? !level.equals(demo.level) : demo.level != null) return false;
-        if (path != null ? !path.equals(demo.path) : demo.path != null) return false;
-        if (status != null ? !status.equals(demo.status) : demo.status != null) return false;
-        return !(createTime != null ? !createTime.equals(demo.createTime) : demo.createTime != null);
+        if (name != null ? !name.equals(function.name) : function.name != null) return false;
+        if (parent_id != null ? !parent_id.equals(function.parent_id) : function.parent_id != null) return false;
+        if (level != null ? !level.equals(function.level) : function.level != null) return false;
+        if (path != null ? !path.equals(function.path) : function.path != null) return false;
+        if (status != null ? !status.equals(function.status) : function.status != null) return false;
+        return !(createTime != null ? !createTime.equals(function.createTime) : function.createTime != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (parent_id != null ? parent_id.hashCode() : 0);
         result = 31 * result + (level != null ? level.hashCode() : 0);
         result = 31 * result + (path != null ? path.hashCode() : 0);
@@ -107,8 +96,7 @@ public class Function implements Serializable {
     @Override
     public String toString() {
         return "Function{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", parent_id=" + parent_id +
                 ", level=" + level +
                 ", path='" + path + '\'' +
