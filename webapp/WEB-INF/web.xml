@@ -48,7 +48,7 @@
 
 
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>com.framework.listener.ContextLoaderListener</listener-class>
     </listener>
 
 
