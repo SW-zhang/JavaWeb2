@@ -3,6 +3,7 @@ package com.framework.interceptor;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,5 +23,12 @@ public class SystemInterceptor extends HandlerInterceptorAdapter {
         System.out.println("you can do something");
 
         return super.preHandle(request, response, handler);
+    }
+
+    @Override
+    public void postHandle(
+            HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
+            throws Exception {
+        //用于拦截ModelAndView的返回值
     }
 }
