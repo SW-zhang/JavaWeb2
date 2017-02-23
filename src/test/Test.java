@@ -1,18 +1,12 @@
 package test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.services.entity.Function;
-import com.services.servcie.DemoService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-
 /**
  * Created by wang on 2016/12/26.
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        ApplicationContext context = new FileSystemXmlApplicationContext("classpath:/applicationContext.xml");
-        DemoService action = (DemoService) context.getBean("demoService");
+//        ApplicationContext context = new FileSystemXmlApplicationContext("classpath:/applicationContext.xml");
+//        DemoService action = (DemoService) context.getBean("demoService");
 //        System.out.println(action.count("#"));
 //        System.out.println(action.count(1));
 //        System.out.println(action.findbyName("制度专栏"));
@@ -28,6 +22,6 @@ public class Test {
 //        action.add(new Function());
 //        System.out.println(action.findOne(1L));
 //        System.out.println(JSON.toJSONString(action.findAll(new Function(), new PageParam())));
-        action.add(new Function());
+//        action.add(new Function());
     }
 }
