@@ -26,7 +26,7 @@ public class LogInterceptor {
      * @return object 返回值
      * @throws Throwable
      */
-    @Around("execution (* com.services.*.*Service*.*(..))")
+    @Around("execution (* com.services..*Service*.*(..))")
     public Object serviceProcess(ProceedingJoinPoint point) throws Throwable {
         Object[] args = point.getArgs();
         String methodName = point.getSignature().getDeclaringTypeName() + "." + point.getSignature().getName();
