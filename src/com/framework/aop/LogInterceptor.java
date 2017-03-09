@@ -46,6 +46,7 @@ public class LogInterceptor {
 
         long end_time = System.currentTimeMillis();
         log.info(String.format("%s, use_time: %d ms, method: %s, return:{%s}", Thread.currentThread(), end_time - start_time, methodName, JSON.toJSONString(returnValue)));
+
         return returnValue;
     }
 

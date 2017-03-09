@@ -20,6 +20,7 @@ public class Test {
             for (Demo f : list) {
                 System.out.println(f.toString());
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
