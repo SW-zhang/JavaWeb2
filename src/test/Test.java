@@ -1,6 +1,6 @@
 package test;
 
-import com.services.entity.Function;
+import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -16,8 +16,8 @@ public class Test {
         try {
             ApplicationContext context = new FileSystemXmlApplicationContext("classpath:/applicationContext.xml");
             DemoService action = (DemoService) context.getBean("demoService");
-            List<Function> list = action.findAll(Arrays.asList("管理"));
-            for (Function f : list) {
+            List<Demo> list = action.findAll(Arrays.asList("管理"));
+            for (Demo f : list) {
                 System.out.println(f.toString());
             }
         } catch (Exception e) {

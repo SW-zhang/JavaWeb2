@@ -13,6 +13,15 @@ import org.springframework.stereotype.Component;
  * @author wang
  * @create 2017-03-08 17:45
  **/
+
+/**
+ * execution表达式含义：
+ * 例： execution (* com.services..*Service*.*(..))
+ * 第一个 * 表示返回值为任意类型
+ * 第一个.. 表示当前包以及其子包
+ * 最后一个* 表示当前类任何方法
+ * （..） 表示方法任何参数类型
+ */
 @Component
 @Order(1)//值越小 执行权限越高
 @Aspect
