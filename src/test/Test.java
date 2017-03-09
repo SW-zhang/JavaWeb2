@@ -1,27 +1,29 @@
 package test;
 
+import com.services.entity.Function;
+import com.services.servcie.DemoService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by wang on 2016/12/26.
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-//        ApplicationContext context = new FileSystemXmlApplicationContext("classpath:/applicationContext.xml");
-//        DemoService action = (DemoService) context.getBean("demoService");
-//        System.out.println(action.count("#"));
-//        System.out.println(action.count(1));
-//        System.out.println(action.findbyName("制度专栏"));
-//        action.delete(1L);
-//        System.out.println(action.findByUserId(1L));
-//        Function d = new Function();
-//        d.setPath("#");
-//        Page<Function> page = action.findAll(d, new PageParam());
-//        System.out.println(JSON.toJSONString(page));
-//        System.out.println(JSON.toJSONString(action.findAll(Arrays.asList("#"))));
-//        action.add(new Function());
-//        System.out.println(JSON.toJSONString(action.findAll()));
-//        action.add(new Function());
-//        System.out.println(action.findOne(1L));
-//        System.out.println(JSON.toJSONString(action.findAll(new Function(), new PageParam())));
-//        action.add(new Function());
+        try {
+            ApplicationContext context = new FileSystemXmlApplicationContext("classpath:/applicationContext.xml");
+            DemoService action = (DemoService) context.getBean("demoService");
+            List<Function> list = action.findAll(Arrays.asList("管理"));
+            for (Function f : list) {
+                System.out.println(f.toString());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 }

@@ -48,9 +48,9 @@ dependencies {
     compile 'org.springframework:spring-web:4.3.4.RELEASE'
     compile 'org.springframework:spring-webmvc:4.3.4.RELEASE'
     compile 'org.springframework.data:spring-data-jpa:1.10.6.RELEASE'
+    compile 'org.springframework:spring-aspects:4.3.4.RELEASE'
 
 //    compile 'org.springframework:spring-asm:4.3.4.RELEASE'
-//    compile 'org.springframework:spring-aspects:4.3.4.RELEASE'
 //    compile 'org.springframework:spring-test:4.3.4.RELEASE'
 //    compile 'org.springframework:spring-oxm:4.3.4.RELEASE'
 
