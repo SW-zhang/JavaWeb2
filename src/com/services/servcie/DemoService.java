@@ -7,7 +7,7 @@ import com.framework.core.Restrictions;
 import com.framework.service.BaseService;
 import com.framework.service.NativeEntityManager;
 import com.services.dao.DemoDao;
-import com.services.entity.Function;
+import com.services.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -33,9 +33,9 @@ public class DemoService extends BaseService {
      * @param pageParam
      * @return
      */
-    public Page<Function> findAll(Function demo, PageParam pageParam) {
+    public Page<Demo> findAll(Demo demo, PageParam pageParam) {
         pageParam.setSort(new Sort(Sort.Direction.DESC, "createTime"));
-        Criteria<Function> c = new Criteria<>();
+        Criteria<Demo> c = new Criteria<>();
         c.add(Restrictions.eq("path", demo.getPath(), true));
         c.add(Restrictions.eq("level", demo.getLevel(), true));
         c.add(Restrictions.eq("name", demo.getName(), true));
@@ -48,8 +48,8 @@ public class DemoService extends BaseService {
      * @param keys
      * @return
      */
-    public List<Function> findAll(List<String> keys) {
-        Criteria<Function> c = new Criteria<>();
+    public List<Demo> findAll(List<String> keys) {
+        Criteria<Demo> c = new Criteria<>();
         Criterion[] criterions = new Criterion[keys.size() * 2];
         for (int i = 0; i < keys.size(); i += 2) {
             criterions[i] = Restrictions.like("name", keys.get(i), true);
@@ -69,19 +69,19 @@ public class DemoService extends BaseService {
     }
 
     @Transactional
-    public void add(Function function) {
-        function.setId(null);
-        function.setCreateTime(new Date());
-        function.setName("测试444");
-        function.setPath("#####");
-        demoDao.save(function);
+    public void add(Demo demo) {
+        demo.setId(null);
+        demo.setCreateTime(new Date());
+        demo.setName("测试444");
+        demo.setPath("#####");
+        demoDao.save(demo);
     }
 
-    public List<Function> list() {
+    public List<Demo> list() {
         return demoDao.findAll();
     }
 
-    public Function findOne(Long id) {
+    public Demo findOne(Long id) {
         return demoDao.findOne(id);
     }
 }

@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "function")
-public class Function extends IdEntity {
+@Table(name = "demo")
+public class Demo extends IdEntity {
     private static final long serialVersionUID = 1L;
 
     private String name; // 功能模块名称
@@ -71,7 +71,7 @@ public class Function extends IdEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Function function = (Function) o;
+        Demo function = (Demo) o;
 
         if (name != null ? !name.equals(function.name) : function.name != null) return false;
         if (parent_id != null ? !parent_id.equals(function.parent_id) : function.parent_id != null) return false;
@@ -95,13 +95,13 @@ public class Function extends IdEntity {
 
     @Override
     public String toString() {
-        return "Function{" +
+        return "Demo{" +
                 "name='" + name + '\'' +
                 ", parent_id=" + parent_id +
                 ", level=" + level +
                 ", path='" + path + '\'' +
                 ", status=" + status +
                 ", createTime=" + createTime +
-                '}';
+                "} " + super.toString();
     }
 }

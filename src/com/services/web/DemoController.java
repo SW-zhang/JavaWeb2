@@ -1,6 +1,6 @@
 package com.services.web;
 
-import com.services.entity.Function;
+import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import com.framework.response.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +22,15 @@ public class DemoController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public AjaxResult list(Function function, WebRequest request) {
-        List<Function> result = demoService.list();
+    public AjaxResult list() {
+        List<Demo> result = demoService.list();
         return AjaxResult.successObject(result);
     }
 
     @RequestMapping(value = "/detail/{id}")
     @ResponseBody
     public AjaxResult detail(@PathVariable Long id) {
-        Function demo = demoService.findOne(id);
+        Demo demo = demoService.findOne(id);
         return AjaxResult.successObject(demo);
     }
 
@@ -46,7 +46,7 @@ public class DemoController {
     @ResponseBody
     public AjaxResult add() {
         try {
-            demoService.add(new Function());
+            demoService.add(new Demo());
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResult.error("异常");
