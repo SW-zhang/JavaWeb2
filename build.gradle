@@ -21,7 +21,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.22'
     compile 'log4j:log4j:1.2.17'
     compile 'org.slf4j:slf4j-log4j12:1.7.22'
-    compile 'junit:junit:4.9'
+    compile 'junit:junit:4.12'
     compile 'javax.transaction:jta:1.1'
     // 工具
     compile 'com.alibaba:fastjson:1.2.17'
@@ -49,9 +49,9 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.3.4.RELEASE'
     compile 'org.springframework.data:spring-data-jpa:1.10.6.RELEASE'
     compile 'org.springframework:spring-aspects:4.3.4.RELEASE'
+    compile 'org.springframework:spring-test:4.3.4.RELEASE'
 
 //    compile 'org.springframework:spring-asm:4.3.4.RELEASE'
-//    compile 'org.springframework:spring-test:4.3.4.RELEASE'
 //    compile 'org.springframework:spring-oxm:4.3.4.RELEASE'
 
 

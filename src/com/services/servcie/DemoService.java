@@ -65,7 +65,7 @@ public class DemoService extends BaseService {
      * @return
      */
     public List findAll() {
-        return entityManager.find("select name,parent_id from function");
+        return entityManager.find("select name,parent_id from demo");
     }
 
     @Transactional
