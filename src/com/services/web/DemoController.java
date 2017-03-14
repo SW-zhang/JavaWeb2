@@ -1,5 +1,6 @@
 package com.services.web;
 
+import com.framework.core.PageParam;
 import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import com.framework.response.AjaxResult;
@@ -26,7 +27,14 @@ public class DemoController {
         List<Demo> result = demoService.list();
         return AjaxResult.successObject(result);
     }
-
+    @RequestMapping(value = "/list_page")
+    public ModelAndView list(WebRequest request, Demo param, PageParam pageParam) {
+        ModelAndView view = new ModelAndView();
+        view.addObject("page", demoService.findAll(param, pageParam));
+        view.addObject("pageParam", request.getParameterMap());
+        view.setViewName("/demo/pager_demo");
+        return view;
+    }
     @RequestMapping(value = "/detail/{id}")
     @ResponseBody
     public AjaxResult detail(@PathVariable Long id) {

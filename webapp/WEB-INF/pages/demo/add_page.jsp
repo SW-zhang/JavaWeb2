@@ -17,9 +17,6 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <link rel="stylesheet" href="${ctx}/static/css/demo.css">
-
-    <script type="text/javascript" src="${ctx}/static/js/demo.js"></script>
 </head>
 <body>
     测试add页面

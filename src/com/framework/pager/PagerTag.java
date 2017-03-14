@@ -26,7 +26,7 @@ public class PagerTag extends TagSupport {
 		StringBuffer uri = new StringBuffer();
 		JspWriter out = pageContext.getOut();
 		try {
-			uri.append("<div class=\"pagination\"><ul>");
+			uri.append("<div class=\"_pagination\"><ul>");
 			if (totalPage >= 1) {
 				uri.append(this.getPrevPage());
 				if(totalPage<=10){
@@ -73,11 +73,7 @@ public class PagerTag extends TagSupport {
 		 return super.doStartTag();
 	}
 	private void initFullUrl(){
-		HttpServletRequest httpServletRequest = (HttpServletRequest) pageContext.getRequest();
-		String requestUrl = httpServletRequest.getRequestURL().toString();
-		String contextPath = httpServletRequest.getContextPath();
-		requestUrl = requestUrl.split(contextPath)[0];
-		fullUrl = requestUrl+contextPath+url;
+		fullUrl = url;
 		StringBuffer paramBuffer = new StringBuffer(); 
 		if (params!=null&&!params.isEmpty()) {
 			for(String paramName : params.keySet()){
@@ -101,9 +97,9 @@ public class PagerTag extends TagSupport {
 		}
 		
 		if (fullUrl.indexOf("?") < 0) {
-			fullUrl = fullUrl + "?" + (pageSize==10?"":("rows=" + pageSize + "&") ) + "page=";
+			fullUrl = fullUrl + "?" + "page=";
 		} else {
-			fullUrl = fullUrl + (pageSize==10?"":("rows=" + pageSize + "&") ) + "page=";
+			fullUrl = fullUrl + "page=";
 		}
 	}
 	private String getPageLink(int targetPageNo) {
