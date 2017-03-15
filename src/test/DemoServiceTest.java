@@ -1,6 +1,7 @@
 package test;
 
 import com.framework.core.PageParam;
+import com.framework.properties.Properties;
 import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import org.junit.Test;
@@ -17,11 +18,14 @@ import static org.junit.Assert.assertTrue;
  * Created by wang on 2016/12/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@ContextConfiguration(locations = "classpath*:/applicationContext.xml")
 public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private DemoService demoService;
+
+    @Autowired
+    private Properties properties;
 
     @Test
     public void findAllTest() {
@@ -35,5 +39,16 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void addTest() {
         demoService.add(new Demo());
+    }
+
+    @Test
+    public void envTest() throws InterruptedException {
+        Integer username = properties.getValue("dbcp.initialSize", Integer.class);
+        System.out.println("-------->" + username);
+    }
+
+    @Test
+    public void envConfigTest() {
+        System.out.println();
     }
 }
