@@ -1,9 +1,12 @@
 package com.services.entity;
 
 import com.framework.id.IdEntity;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,9 +14,13 @@ import java.util.Date;
 public class Demo extends IdEntity {
     private static final long serialVersionUID = 1L;
 
+    @NotNull(message = "名称不能为null")
+    @Size(min = 4, max = 10)
     private String name; // 功能模块名称
     private Long parent_id; // 父功能模块id
     private Integer level; // 级别
+    @NotNull
+    @Size(min = 4, max = 10)
     private String path; // 功能路径
     private Integer status; // 状态 0：不可用 1：可用
     private Date createTime; // 创建时间

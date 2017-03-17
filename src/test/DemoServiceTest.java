@@ -43,7 +43,8 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void envTest() throws InterruptedException {
-        Integer username = properties.getValue("dbcp.initialSize", Integer.class);
+        System.out.println();
+        String username = properties.getValue("app", String.class);
         System.out.println("-------->" + username);
     }
 
