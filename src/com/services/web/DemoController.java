@@ -79,7 +79,6 @@ public class DemoController {
     @RequestMapping(value = "/paramValid")
     @ResponseBody
     public AjaxResult paramValid(@Valid ParamVo param, Errors errors) {
-        int x = 6/0;
         if (errors.hasErrors()) {
             return error(errors);
         }
@@ -106,7 +105,7 @@ public class DemoController {
 
     @RequestMapping(value = "/uploadFile")
     @ResponseBody
-    public AjaxResult uploadFile(@RequestPart("file_name") MultipartFile file) {
+    public AjaxResult uploadFile(@RequestPart("file") MultipartFile file) {
         String file_path = "";
         try {
             file_path = "/files/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
