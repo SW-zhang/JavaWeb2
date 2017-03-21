@@ -22,7 +22,7 @@ public interface MailService {
      *
      * @param emailVo
      */
-    void sendEmailMessageOFFiles(EmailVo emailVo) throws MessagingException;
+    void sendEmailMessage(EmailVo emailVo) throws MessagingException;
 
     /**
      * 获取模板

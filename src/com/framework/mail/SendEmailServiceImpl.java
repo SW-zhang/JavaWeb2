@@ -3,6 +3,7 @@ package com.framework.mail;
 import com.framework.mail.base.EmailVo;
 import com.framework.mail.base.MailService;
 import com.framework.properties.Properties;
+import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,7 @@ public class SendEmailServiceImpl implements SendEmailService {
         emailVo.setEmailContent(content);
         emailVo.setAttachFile(files);
         try {
-            mailService.sendEmailMessageOFFiles(emailVo);
+            mailService.sendEmailMessage(emailVo);
         } catch (MessagingException e) {
             e.printStackTrace();
 
@@ -100,7 +101,7 @@ public class SendEmailServiceImpl implements SendEmailService {
         emailVo.setEmailContent(mailService.geFreeMarkerTemplateContent(template, params));
         emailVo.setAttachFile(files);
         try {
-            mailService.sendEmailMessageOFFiles(emailVo);
+            mailService.sendEmailMessage(emailVo);
         } catch (MessagingException e) {
             e.printStackTrace();
             logger.error("send message exception:" + e.getMessage(), e);
@@ -124,8 +125,28 @@ public class SendEmailServiceImpl implements SendEmailService {
         emailVo.setAttachFile(files);
         emailVo.setImages(images);
         try {
-            mailService.sendEmailMessageOFFiles(emailVo);
+            mailService.sendEmailMessage(emailVo);
         } catch (MessagingException e) {
+            e.printStackTrace();
+            logger.error("send message exception:" + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 发送带附件的邮件 && 图片 && 使用模板
+     *
+     * @param param
+     */
+    @Override
+    public void sendMessage(EmailParam param) {
+        EmailVo emailVo = new EmailVo();
+        try {
+            BeanUtils.copyProperties(emailVo, param);
+            emailVo.setSender(getSender());
+            emailVo.setEmailContent(mailService.geFreeMarkerTemplateContent(param.getTemplate(), param.getTemplateParams()));
+            emailVo.setAttachFile(param.getFiles());
+            mailService.sendEmailMessage(emailVo);
+        } catch (Exception e) {
             e.printStackTrace();
             logger.error("send message exception:" + e.getMessage(), e);
         }

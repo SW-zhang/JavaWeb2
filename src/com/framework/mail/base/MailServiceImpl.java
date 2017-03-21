@@ -40,7 +40,7 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public void sendEmailMessageOfSimpleText(EmailVo emailVo) {
-        logger.debug(String.format("send simple message param:{%s}", JSON.toJSONString(emailVo)));
+        logger.debug(String.format("send simple message param:{%s}", emailVo.toString()));
         SimpleMailMessage simpleTextMessage = new SimpleMailMessage();
         simpleTextMessage.setFrom(emailVo.getSender());
         simpleTextMessage.setTo(emailVo.getReceivers());
@@ -65,8 +65,8 @@ public class MailServiceImpl implements MailService {
      * @param emailVo
      */
     @Override
-    public void sendEmailMessageOFFiles(EmailVo emailVo) throws MessagingException {
-        logger.debug(String.format("send message param:{%s}", JSON.toJSONString(emailVo)));
+    public void sendEmailMessage(EmailVo emailVo) throws MessagingException {
+        logger.debug(String.format("send message param:{%s}", emailVo.toString()));
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -109,7 +109,7 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public String geFreeMarkerTemplateContent(String template, Map<String, Object> model) {
-        logger.debug(String.format("get message template: %s, param:{%s}", template, model.toString()));
+        logger.debug(String.format("get message template: %s, param:{%s}", template, JSON.toJSONString(model)));
         StringBuilder content = new StringBuilder();
         try {
             content.append(FreeMarkerTemplateUtils.processTemplateIntoString(

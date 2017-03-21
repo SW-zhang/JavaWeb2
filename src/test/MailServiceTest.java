@@ -1,5 +1,6 @@
 package test;
 
+import com.framework.mail.EmailParam;
 import com.framework.mail.SendEmailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,4 +39,11 @@ public class MailServiceTest extends AbstractJUnit4SpringContextTests {
         emailService.sendMessage(new String[]{"740787932@qq.com"}, "demo", params);
     }
 
+    @Test
+    public void sendTest3() {
+        EmailParam param = new EmailParam();
+        param.setReceivers(new String[]{"740787932@qq.com"});
+        param.setTemplate("demo");
+        emailService.sendMessage(param);
+    }
 }

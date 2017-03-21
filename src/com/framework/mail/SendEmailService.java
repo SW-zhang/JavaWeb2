@@ -75,4 +75,11 @@ public interface SendEmailService {
      * @param files     附件
      */
     void sendMessage(String[] receivers, String subject, String template, Map<String, Object> params, Map<String, File> images, File... files);
+
+    /**
+     * 发送带附件的邮件 && 图片 && 使用模板
+     *
+     * @param param
+     */
+    void sendMessage(EmailParam param);
 }

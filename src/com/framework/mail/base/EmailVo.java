@@ -1,6 +1,7 @@
 package com.framework.mail.base;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -119,5 +120,19 @@ public class EmailVo {
 
     public void setImages(Map<String, File> images) {
         this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailVo{" +
+                "sender='" + sender + '\'' +
+                ", receivers=" + Arrays.toString(receivers) +
+                ", cc=" + Arrays.toString(cc) +
+                ", bcc=" + Arrays.toString(bcc) +
+                ", emailContent='" + emailContent + '\'' +
+                ", subject='" + subject + '\'' +
+                ", attachFile=" + Arrays.toString(attachFile) +
+                ", images=" + images +
+                '}';
     }
 }
