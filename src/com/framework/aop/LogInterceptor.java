@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Order(1)//值越小 执行权限越高
 @Aspect
 public class LogInterceptor {
-    private static final Logger log = LoggerFactory.getLogger(LogInterceptor.class);
+    private final Logger log = LoggerFactory.getLogger(LogInterceptor.class);
 
     /**
      * 调用service方法前后加日志
