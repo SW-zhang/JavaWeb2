@@ -43,7 +43,7 @@ public class SendEmailServiceImpl implements SendEmailService {
      */
     @Override
     public void sendMessage(String[] receivers, String template, Map<String, Object> params) {
-        sendMessage(receivers, null, template, params);
+        sendMessage(receivers, "", template, params);
     }
 
     /**
@@ -60,6 +60,13 @@ public class SendEmailServiceImpl implements SendEmailService {
         mailService.sendEmailMessageOfSimpleText(emailVo);
     }
 
+    /**
+     * 发送邮件
+     *
+     * @param receivers 接受者
+     * @param content   内容
+     * @param files     附件
+     */
     @Override
     public void sendMessage(String[] receivers, String content, File... files) {
         sendMessage(receivers, "", content, files);
@@ -97,15 +104,7 @@ public class SendEmailServiceImpl implements SendEmailService {
      */
     @Override
     public void sendMessage(String[] receivers, String subject, String template, Map<String, Object> params, File... files) {
-        EmailVo emailVo = new EmailVo(getSender(), receivers, subject);
-        emailVo.setEmailContent(mailService.geFreeMarkerTemplateContent(template, params));
-        emailVo.setAttachFile(files);
-        try {
-            mailService.sendEmailMessage(emailVo);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            logger.error("send message exception:" + e.getMessage(), e);
-        }
+        sendMessage(receivers, subject, template, params, null, files);
     }
 
     /**
@@ -130,6 +129,7 @@ public class SendEmailServiceImpl implements SendEmailService {
             e.printStackTrace();
             logger.error("send message exception:" + e.getMessage(), e);
         }
+
     }
 
     /**
@@ -152,6 +152,11 @@ public class SendEmailServiceImpl implements SendEmailService {
         }
     }
 
+    /**
+     * 获取发件人
+     *
+     * @return 发件人邮箱
+     */
     private String getSender() {
         return properties.getValue("mail.sender");
     }
