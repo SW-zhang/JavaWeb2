@@ -2,6 +2,7 @@ package com.framework.dao;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.List;
  * @param <T>
  * @param <ID>
  */
+@NoRepositoryBean
 public interface BaseDao<T, ID extends Serializable> extends PagingAndSortingRepository<T, ID>, JpaSpecificationExecutor<T> {
     List<T> findAll();
 

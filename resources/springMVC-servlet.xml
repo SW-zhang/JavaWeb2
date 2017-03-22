@@ -18,7 +18,7 @@
     <!-- 静态资源-->
     <mvc:resources location="/static/" mapping="/static/**"/>
 
-    <context:component-scan base-package="com.services.**.**.web">
+    <context:component-scan base-package="com.**.**.web">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>

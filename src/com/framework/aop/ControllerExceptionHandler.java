@@ -46,7 +46,7 @@ public class ControllerExceptionHandler extends SimpleMappingExceptionResolver {
             }
             return null;
         } else {    //跳转类异常处理，直接跳转至异常提示页面
-            return new ModelAndView("/error", model);
+            return new ModelAndView("/error/500", model);
         }
     }
 }

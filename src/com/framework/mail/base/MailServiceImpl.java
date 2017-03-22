@@ -85,8 +85,7 @@ public class MailServiceImpl implements MailService {
         }
         if (emailVo.getAttachFile() != null && emailVo.getAttachFile().length > 0) {
             for (File file : emailVo.getAttachFile()) {
-                FileSystemResource fileSystemResource = new FileSystemResource(file);
-                helper.addAttachment(file.getName(), fileSystemResource);
+                helper.addAttachment(file.getName(), file);
             }
         }
         if (emailVo.getImages() != null && !emailVo.getImages().isEmpty()) {

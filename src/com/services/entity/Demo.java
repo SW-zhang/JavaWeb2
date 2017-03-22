@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "demo")
 public class Demo extends IdEntity {
-    private static final long serialVersionUID = 1L;
+    private final long serialVersionUID = 1L;
 
     @NotNull(message = "名称不能为null")
     @Size(min = 4, max = 10)
