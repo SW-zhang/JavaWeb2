@@ -12,7 +12,7 @@ import java.util.Date;
         //唯一索引
         uniqueConstraints = @UniqueConstraint(name = "unique_entry_code", columnNames = {"entryCode"}))
 public class UploadFile extends IdEntity {
-    private final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -5077519718073266357L;
 
     private String entryCode;
     private String realFileName;//真实文件名

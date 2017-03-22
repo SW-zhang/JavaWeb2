@@ -46,16 +46,17 @@ public class UploadController {
     @RequestMapping(value = "/upload")
     @ResponseBody
     public AjaxResult upload(@RequestPart("file") MultipartFile file, String entryCode) {
-        String dir = properties.getValue("upload.dir") + new SimpleDateFormat("yyyyMM").format(new Date());
+        String dir = properties.getValue("upload.dir");
+        String date_dir = new SimpleDateFormat("yyyyMM").format(new Date());
         try {
-            File file_dir = new File(dir);
+            File file_dir = new File(dir + date_dir);
             if (!file_dir.exists()) {
                 file_dir.mkdirs();
             }
             String realFileName = file.getOriginalFilename();
             String saveFileName = String.valueOf(System.nanoTime());
 
-            String file_path = dir + File.separator + saveFileName;
+            String file_path = dir + date_dir + File.separator + saveFileName;
             //将文件保存到指定目录
             file.transferTo(new File(file_path));
 
@@ -67,7 +68,7 @@ public class UploadController {
             UploadFile uploadFile = new UploadFile();
             uploadFile.setCreateTime(new Date());
             uploadFile.setRealFileName(realFileName);
-            uploadFile.setSaveFilePath(dir);
+            uploadFile.setSaveFilePath(date_dir);
             uploadFile.setSaveFileName(saveFileName);
             uploadFile.setEntryCode(entryCode);
             uploadFile.setState(FileStatusEnum.NOSAVE.getValue());
@@ -86,9 +87,9 @@ public class UploadController {
      * @param entityCode
      * @return
      */
-    @RequestMapping("/getFileList/{entityCode}")
+    @RequestMapping("/list/{entityCode}")
     @ResponseBody
-    public AjaxResult getFileList(@PathVariable String entityCode) {
+    public AjaxResult list(@PathVariable String entityCode) {
         if (!StringUtils.isEmpty(entityCode)) {
             List<UploadFile> list = uploadFileService.getListByEntryCode(entityCode);
             return AjaxResult.successObject(list);
@@ -124,7 +125,8 @@ public class UploadController {
     public ResponseEntity<byte[]> download(@PathVariable Long id) throws IOException {
         UploadFile file = uploadFileService.findOne(id);
         if (file != null) {
-            String file_path = file.getSaveFilePath() + File.separator + file.getSaveFileName();
+            String dir = properties.getValue("upload.dir");
+            String file_path = dir + file.getSaveFilePath() + File.separator + file.getSaveFileName();
             File download_file = new File(file_path);
             if (download_file.exists()) {
                 HttpHeaders headers = new HttpHeaders();

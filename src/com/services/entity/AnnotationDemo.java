@@ -14,7 +14,7 @@ import java.util.Date;
         indexes = {
                 @Index(name = "i_name", columnList = "name", unique = false)})
 public class AnnotationDemo extends IdEntity {
-    private final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1587600973904646855L;
 
     private String code;
     private String name;
