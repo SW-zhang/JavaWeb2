@@ -1,4 +1,4 @@
-package com.framework.security;
+package com.framework.security.configuration;
 
 import com.framework.utils.MD5Util;
 import org.springframework.security.core.authority.AuthorityUtils;
