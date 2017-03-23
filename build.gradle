@@ -56,6 +56,12 @@ dependencies {
     compile 'org.springframework:spring-aspects:4.3.4.RELEASE'
     compile 'org.springframework:spring-test:4.3.4.RELEASE'
 
+
+    //spring-security
+    compile 'org.springframework.security:spring-security-config:4.2.1.RELEASE'
+    compile 'org.springframework.security:spring-security-core:4.2.1.RELEASE'
+    compile 'org.springframework.security:spring-security-web:4.2.1.RELEASE'
+
 //    compile 'org.springframework:spring-asm:4.3.4.RELEASE'
 //    compile 'org.springframework:spring-oxm:4.3.4.RELEASE'
 
