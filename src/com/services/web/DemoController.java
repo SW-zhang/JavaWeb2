@@ -1,8 +1,8 @@
 package com.services.web;
 
-import com.framework.core.PageParam;
-import com.framework.properties.Properties;
-import com.framework.response.AjaxResult;
+import com.framework.querycore.PageParam;
+import com.framework.common.Properties;
+import com.framework.common.AjaxResult;
 import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;

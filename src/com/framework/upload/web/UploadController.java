@@ -1,7 +1,7 @@
 package com.framework.upload.web;
 
-import com.framework.properties.Properties;
-import com.framework.response.AjaxResult;
+import com.framework.common.Properties;
+import com.framework.common.AjaxResult;
 import com.framework.upload.FileStatusEnum;
 import com.framework.upload.entity.UploadFile;
 import com.framework.upload.service.UploadFileService;

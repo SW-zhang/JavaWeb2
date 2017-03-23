@@ -1,6 +1,6 @@
 package com.services.entity;
 
-import com.framework.id.IdEntity;
+import com.framework.base.IdEntity;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;

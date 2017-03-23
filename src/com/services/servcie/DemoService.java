@@ -1,11 +1,11 @@
 package com.services.servcie;
 
-import com.framework.core.Criteria;
-import com.framework.core.Criterion;
-import com.framework.core.PageParam;
-import com.framework.core.Restrictions;
-import com.framework.service.BaseService;
-import com.framework.service.NativeEntityManager;
+import com.framework.querycore.Criteria;
+import com.framework.querycore.Criterion;
+import com.framework.querycore.PageParam;
+import com.framework.querycore.Restrictions;
+import com.framework.base.BaseService;
+import com.framework.base.NativeEntityManager;
 import com.services.dao.DemoDao;
 import com.services.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;

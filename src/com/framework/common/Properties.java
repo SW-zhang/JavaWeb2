@@ -1,4 +1,4 @@
-package com.framework.properties;
+package com.framework.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

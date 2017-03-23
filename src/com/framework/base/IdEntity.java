@@ -1,4 +1,4 @@
-package com.framework.id;
+package com.framework.base;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

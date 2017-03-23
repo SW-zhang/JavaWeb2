@@ -1,6 +1,6 @@
 package com.framework.upload.entity;
 
-import com.framework.id.IdEntity;
+import com.framework.base.IdEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

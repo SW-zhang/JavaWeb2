@@ -1,4 +1,4 @@
-package com.framework.core;
+package com.framework.querycore;
 
 /**
  * 条件判断运算符

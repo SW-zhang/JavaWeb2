@@ -1,6 +1,6 @@
 package com.framework.upload.service;
 
-import com.framework.service.BaseService;
+import com.framework.base.BaseService;
 import com.framework.upload.FileStatusEnum;
 import com.framework.upload.dao.UploadFileDao;
 import com.framework.upload.entity.UploadFile;

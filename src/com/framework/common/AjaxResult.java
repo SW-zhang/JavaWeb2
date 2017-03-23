@@ -1,4 +1,4 @@
-package com.framework.response;
+package com.framework.common;
 
 import java.util.HashMap;
 import java.util.Map;

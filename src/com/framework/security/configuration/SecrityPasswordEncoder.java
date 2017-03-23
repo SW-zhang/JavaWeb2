@@ -1,6 +1,6 @@
 package com.framework.security.configuration;
 
-import com.framework.utils.MD5Util;
+import com.framework.common.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

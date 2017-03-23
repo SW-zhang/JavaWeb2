@@ -1,6 +1,6 @@
 package com.framework.upload.dao;
 
-import com.framework.dao.BaseDao;
+import com.framework.base.BaseDao;
 import com.framework.upload.entity.UploadFile;
 import org.springframework.data.jpa.repository.Query;
 

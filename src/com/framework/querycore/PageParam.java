@@ -1,4 +1,4 @@
-package com.framework.core;
+package com.framework.querycore;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

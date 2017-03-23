@@ -1,7 +1,6 @@
 package com.services.entity;
 
-import com.framework.id.IdEntity;
-import org.hibernate.validator.constraints.Length;
+import com.framework.base.IdEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

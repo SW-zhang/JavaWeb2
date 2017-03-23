@@ -1,4 +1,4 @@
-package com.framework.service;
+package com.framework.base;
 
 /**
  * 服务层基类

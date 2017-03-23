@@ -1,4 +1,4 @@
-package com.framework.utils;
+package com.framework.common;
 
 import java.util.Arrays;
 

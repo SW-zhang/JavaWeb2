@@ -1,7 +1,7 @@
 package test;
 
-import com.framework.core.PageParam;
-import com.framework.properties.Properties;
+import com.framework.querycore.PageParam;
+import com.framework.common.Properties;
 import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import org.junit.Test;

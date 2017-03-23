@@ -1,4 +1,4 @@
-package com.framework.pager;
+package com.framework.querycore;
 
 import org.springframework.util.StringUtils;
 

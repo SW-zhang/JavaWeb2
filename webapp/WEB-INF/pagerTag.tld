@@ -7,7 +7,7 @@
     <uri></uri>
     <tag>
         <name>outpage</name>
-        <tag-class>com.framework.pager.PagerTag</tag-class>
+        <tag-class>com.framework.querycore.PagerTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <name>curPage</name>

@@ -1,6 +1,6 @@
 package com.services.dao;
 
-import com.framework.dao.BaseDao;
+import com.framework.base.BaseDao;
 import com.services.entity.Demo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

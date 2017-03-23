@@ -1,4 +1,4 @@
-package com.framework.core;
+package com.framework.querycore;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

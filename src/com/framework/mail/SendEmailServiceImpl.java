@@ -2,7 +2,7 @@ package com.framework.mail;
 
 import com.framework.mail.base.EmailVo;
 import com.framework.mail.base.MailService;
-import com.framework.properties.Properties;
+import com.framework.common.Properties;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

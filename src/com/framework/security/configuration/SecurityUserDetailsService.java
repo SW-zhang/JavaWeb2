@@ -1,6 +1,6 @@
 package com.framework.security.configuration;
 
-import com.framework.utils.MD5Util;
+import com.framework.common.MD5Util;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
