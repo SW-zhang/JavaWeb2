@@ -4,15 +4,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
+
 /**
  * mongo 实体
  **/
 @Document
-public class MongoDemoEntity {
+public class MongoDemoEntity implements Serializable {
+    private static final long serialVersionUID = 7642884726047674586L;
+
     @Id
     private String id;
+
     @Field("name")
     private String name;
+
     private Integer age;
 
     public String getId() {
