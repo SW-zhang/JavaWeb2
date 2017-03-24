@@ -28,7 +28,7 @@ public interface DemoDao extends BaseDao<Demo, Long>, DemoSweeper {
     @Query("select id from Demo where path = ?1")
     List<Long> findIdByPath(String path);
 
-    @Query(value = "select d.* from demo d join user_func uf on d.id = uf.func_id where uf.user_id = ?1", nativeQuery = true)
+    @Query(value = "select d from demo d join user_func uf on d.id = uf.func_id where uf.user_id = ?1", nativeQuery = true)
     List<Demo> findByUserId(Long user_id);
 
 }
