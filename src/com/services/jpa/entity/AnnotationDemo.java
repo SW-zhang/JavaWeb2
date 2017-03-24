@@ -1,4 +1,4 @@
-package com.services.entity;
+package com.services.jpa.entity;
 
 import com.framework.base.IdEntity;
 

@@ -96,4 +96,8 @@
     <bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
         <property name="templateLoaderPath" value="classpath:emailtemplates" />
     </bean>
+
+    <!-- 引入mongodb的相关配置 -->
+    <import resource="classpath:spring-mongodb.xml"/>
+
 </beans>

@@ -3,8 +3,8 @@ package test;
 import com.alibaba.fastjson.JSON;
 import com.framework.common.Properties;
 import com.framework.querycore.PageParam;
-import com.services.entity.Demo;
-import com.services.servcie.DemoService;
+import com.services.jpa.entity.Demo;
+import com.services.jpa.servcie.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 

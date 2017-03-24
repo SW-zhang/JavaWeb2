@@ -75,6 +75,12 @@ dependencies {
     compile 'org.freemarker:freemarker:2.3.23'
 
 
+    //mongodb
+    compile 'org.springframework.data:spring-data-mongodb:1.9.6.RELEASE'
+    compile 'org.mongodb:mongo-java-driver:3.4.2'
+
+
+
     compile 'javax.servlet:jstl:1.2'
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
