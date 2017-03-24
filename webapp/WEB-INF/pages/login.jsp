@@ -18,7 +18,7 @@
                 <h2>Login</h2>
                 <div class="clear"></div>
             </div>
-            <form name="login_form" th:action="@{/login}" method="post">
+            <form name="login_form" th:action="${ctx}/login" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="error-msg">
                     <c:if test="${param.error != null}">
