@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @SuppressWarnings("JpaQlInspection")
-public interface DemoDao extends BaseDao<Demo, Long> {
+public interface DemoDao extends BaseDao<Demo, Long>, DemoSweeper {
 
     @Query(value = "select count(id) from demo where path = ?1", nativeQuery = true)
     long count(String path);

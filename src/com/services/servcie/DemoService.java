@@ -1,11 +1,11 @@
 package com.services.servcie;
 
+import com.framework.base.BaseService;
+import com.framework.base.NativeEntityManager;
 import com.framework.querycore.Criteria;
 import com.framework.querycore.Criterion;
 import com.framework.querycore.PageParam;
 import com.framework.querycore.Restrictions;
-import com.framework.base.BaseService;
-import com.framework.base.NativeEntityManager;
 import com.services.dao.DemoDao;
 import com.services.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,12 +60,12 @@ public class DemoService extends BaseService {
     }
 
     /**
-     * 使用entityManager 写sql的方式
+     * 使用扩展接口的方法
      *
      * @return
      */
     public List findAll() {
-        return entityManager.find("select name,parent_id from demo");
+        return demoDao.findAllTest();
     }
 
     @Transactional

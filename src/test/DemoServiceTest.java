@@ -1,7 +1,8 @@
 package test;
 
-import com.framework.querycore.PageParam;
+import com.alibaba.fastjson.JSON;
 import com.framework.common.Properties;
+import com.framework.querycore.PageParam;
 import com.services.entity.Demo;
 import com.services.servcie.DemoService;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 
@@ -51,5 +54,11 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void envConfigTest() {
         System.out.println();
+    }
+
+
+    @Test
+    public void demoDaoImplTest() {
+        System.out.println(JSON.toJSONString(demoService.findAll()));
     }
 }
