@@ -1,6 +1,6 @@
-package com.services.jpa.dao.impl;
+package com.services.demo.dao.impl;
 
-import com.services.jpa.dao.DemoSweeper;
+import com.services.demo.dao.DemoSweeper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

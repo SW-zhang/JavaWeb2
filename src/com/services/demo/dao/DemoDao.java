@@ -1,7 +1,7 @@
-package com.services.jpa.dao;
+package com.services.demo.dao;
 
 import com.framework.base.BaseDao;
-import com.services.jpa.entity.Demo;
+import com.services.demo.entity.Demo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;

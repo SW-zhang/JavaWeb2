@@ -1,7 +1,7 @@
 package test;
 
 import com.alibaba.fastjson.JSON;
-import com.services.jpa.web.DemoController;
+import com.services.demo.web.DemoController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

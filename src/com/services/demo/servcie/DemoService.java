@@ -1,4 +1,4 @@
-package com.services.jpa.servcie;
+package com.services.demo.servcie;
 
 import com.framework.base.BaseService;
 import com.framework.base.NativeEntityManager;
@@ -6,8 +6,8 @@ import com.framework.querycore.Criteria;
 import com.framework.querycore.Criterion;
 import com.framework.querycore.PageParam;
 import com.framework.querycore.Restrictions;
-import com.services.jpa.dao.DemoDao;
-import com.services.jpa.entity.Demo;
+import com.services.demo.dao.DemoDao;
+import com.services.demo.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;

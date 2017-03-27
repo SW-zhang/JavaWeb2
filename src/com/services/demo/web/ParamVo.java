@@ -1,4 +1,4 @@
-package com.services.jpa.web;
+package com.services.demo.web;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

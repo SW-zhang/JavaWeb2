@@ -1,6 +1,6 @@
-package com.services.mongo.mogondb;
+package com.services.demo.mongodb;
 
-import com.services.mongo.entity.MongoDemoEntity;
+import com.services.demo.entity.MongoDemoEntity;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Spring data mongo 的扩展
  * 注：被扩展的接口必须继承本接口
  **/
-public interface MongoDemoSweeper {
+public interface DemoMongoSweeper {
 
     List<MongoDemoEntity> findList(String name, Integer age);
 }

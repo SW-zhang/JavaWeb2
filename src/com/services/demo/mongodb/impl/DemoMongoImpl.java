@@ -1,21 +1,21 @@
-package com.services.mongo.mogondb.impl;
+package com.services.demo.mongodb.impl;
 
-import com.services.mongo.entity.MongoDemoEntity;
-import com.services.mongo.mogondb.MongoDemoSweeper;
+import com.services.demo.entity.MongoDemoEntity;
+import com.services.demo.mongodb.DemoMongoSweeper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
  * Spring data mongo 的扩展
  * 注：此类的类名必须是被扩展类名+Impl的方式
  **/
-public class MongoDemoDBImpl implements MongoDemoSweeper {
+public class DemoMongoImpl implements DemoMongoSweeper {
 
-    @PersistenceContext
+    @Autowired
     private MongoOperations mongo;
 
     @Override

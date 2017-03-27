@@ -1,10 +1,10 @@
-package com.services.jpa.web;
+package com.services.demo.web;
 
 import com.framework.querycore.PageParam;
 import com.framework.common.Properties;
 import com.framework.common.AjaxResult;
-import com.services.jpa.entity.Demo;
-import com.services.jpa.servcie.DemoService;
+import com.services.demo.entity.Demo;
+import com.services.demo.servcie.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
