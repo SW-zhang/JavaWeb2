@@ -25,7 +25,7 @@ import java.util.Map;
  * @ClassName: BaseCRUDServiceImpl
  * @Description:
  */
-@Service("entityManager")
+@Service("crudService")
 @Transactional(rollbackFor = {Exception.class})
 public class BaseCRUDServiceImpl implements BaseCRUDService {
 
