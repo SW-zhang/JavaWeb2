@@ -5,11 +5,6 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 实体管理器，直接对Entity对象进行持久操作
- * 此管理器仅用于对不确定类型entity操作使用，
- * 已明确类型情况，即已知对应entity对应dao的情况禁用此类
- */
 public interface BaseCRUDService {
 
     /**
