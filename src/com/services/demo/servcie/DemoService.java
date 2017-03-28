@@ -1,7 +1,7 @@
 package com.services.demo.servcie;
 
 import com.framework.base.BaseService;
-import com.framework.base.NativeEntityManager;
+import com.framework.base.BaseCRUDService;
 import com.framework.querycore.Criteria;
 import com.framework.querycore.Criterion;
 import com.framework.querycore.PageParam;
@@ -24,7 +24,7 @@ public class DemoService extends BaseService {
     @Autowired
     private DemoDao demoDao;
     @Autowired
-    private NativeEntityManager entityManager;
+    private BaseCRUDService entityManager;
 
     /**
      * 分页对象用法
