@@ -162,7 +162,6 @@ public class BaseCRUDServiceImplTest extends AbstractJUnit4SpringContextTests {
         Map<String, Object> params = new HashMap<>();
         params.put("path", "#####");
         List<Demo> demos = entityManager.hqlPager(Demo.class, params, Arrays.asList(
-                new Sort.Order(Sort.Direction.DESC, "id"),
                 new Sort.Order(Sort.Direction.ASC, "createTime")), 1, 5);
         for (Demo demo : demos) {
             System.out.println(demo.toString());

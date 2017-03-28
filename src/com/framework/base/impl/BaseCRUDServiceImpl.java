@@ -1,6 +1,7 @@
 package com.framework.base.impl;
 
 import com.framework.base.BaseCRUDService;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -118,9 +119,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public <T> long count(Class<T> entityClass, Object... args) {
-        Query query = em.createQuery("select count(*) from " + entityClass.getName(), Long.class);
-        queryHqlParams(query, args);
-        return (long) query.getSingleResult();
+        return (long) singleHqlResult(Long.class, "select count(*) from " + entityClass.getName(), null, null, args);
     }
 
     /**
@@ -134,11 +133,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     public <T> long count(Class<T> entityClass, Map<String, Object> params) {
         StringBuilder hql = new StringBuilder("select count(*) from ").append(entityClass.getName()).append(" where 1=1 ");
         Object[] args = assemble(hql, params, null, null);
-        Query query = em.createQuery(hql.toString(), Long.class);
-        if (args != null) {
-            queryHqlParams(query, args);
-        }
-        return (long) query.getSingleResult();
+        return (long) singleHqlResult(Long.class, hql.toString(), null, null, args);
     }
 
     /**
@@ -150,9 +145,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public long countHql(String hql, Object... args) {
-        Query query = em.createQuery(hql, Long.class);
-        queryHqlParams(query, args);
-        return (long) query.getSingleResult();
+        return (long) singleHqlResult(Long.class, hql, null, null, args);
     }
 
     /**
@@ -164,9 +157,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public long countSql(String sql, Object... args) {
-        Query query = em.createNativeQuery(sql);
-        querySqlParams(query, args);
-        return ((BigInteger) query.getSingleResult()).longValue();
+        return ((BigInteger) singleSqlResult(null, sql, null, null, args)).longValue();
     }
 
     /**
@@ -182,9 +173,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<?> hql(String hql, Object... args) {
-        Query query = em.createQuery(hql);
-        queryHqlParams(query, args);
-        return query.getResultList();
+        return listHqlResult(null, hql, null, null, args);
     }
 
     /**
@@ -197,9 +186,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> hql(Class<T> expectType, String hql, Object... args) {
-        Query query = em.createQuery(hql, expectType);
-        queryHqlParams(query, args);
-        return query.getResultList();
+        return listHqlResult(expectType, hql, null, null, args);
     }
 
     /**
@@ -215,9 +202,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<?> sql(String sql, Object... args) {
-        Query query = em.createNativeQuery(sql);
-        querySqlParams(query, args);
-        return query.getResultList();
+        return listSqlResult(null, sql, null, null, args);
     }
 
     /**
@@ -230,9 +215,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> sql(Class<T> expectType, String sql, Object... args) {
-        Query query = em.createNativeQuery(sql, expectType);
-        querySqlParams(query, args);
-        return query.getResultList();
+        return listSqlResult(expectType, sql, null, null, args);
     }
 
     /**
@@ -246,9 +229,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Object uniqueResultHql(String hql, Object... args) {
-        Query query = em.createQuery(hql);
-        queryHqlParams(query, args);
-        return query.getSingleResult();
+        return singleHqlResult(null, hql, null, null, args);
     }
 
     /**
@@ -262,9 +243,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> T uniqueResultHql(Class<T> expectType, String hql, Object... args) {
-        Query query = em.createQuery(hql, expectType);
-        queryHqlParams(query, args);
-        return (T) query.getSingleResult();
+        return (T) singleHqlResult(expectType, hql, null, null, args);
     }
 
     /**
@@ -278,9 +257,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Object uniqueResultSql(String sql, Object... args) {
-        Query query = em.createNativeQuery(sql);
-        querySqlParams(query, args);
-        return query.getSingleResult();
+        return singleSqlResult(null, sql, null, null, args);
     }
 
     /**
@@ -294,9 +271,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> T uniqueResultSql(Class<T> expectType, String sql, Object... args) {
-        Query query = em.createNativeQuery(sql, expectType);
-        querySqlParams(query, args);
-        return (T) query.getSingleResult();
+        return (T) singleSqlResult(expectType, sql, null, null, args);
     }
 
     /**
@@ -309,10 +284,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Object topResultHql(String hql, Object... args) {
-        Query query = em.createQuery(hql);
-        queryHqlParams(query, args);
-        query.setMaxResults(1);
-        return query.getSingleResult();
+        return singleHqlResult(null, hql, null, 1, args);
     }
 
     /**
@@ -326,10 +298,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> T topResultHql(Class<T> expectType, String hql, Object... args) {
-        Query query = em.createQuery(hql, expectType);
-        queryHqlParams(query, args);
-        query.setMaxResults(1);
-        return (T) query.getSingleResult();
+        return (T) singleHqlResult(expectType, hql, null, 1, args);
     }
 
     /**
@@ -342,10 +311,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Object topResultSql(String sql, Object... args) {
-        Query query = em.createNativeQuery(sql);
-        querySqlParams(query, args);
-        query.setMaxResults(1);
-        return query.getSingleResult();
+        return singleSqlResult(null, sql, null, 1, args);
     }
 
     /**
@@ -359,10 +325,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> T topResultSql(Class<T> expectType, String sql, Object... args) {
-        Query query = em.createNativeQuery(sql, expectType);
-        querySqlParams(query, args);
-        query.setMaxResults(1);
-        return (T) query.getSingleResult();
+        return (T) singleSqlResult(expectType, sql, null, 1, args);
     }
 
     /**
@@ -377,10 +340,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> topResultSql(Class<T> expectType, int top, String sql, Object... args) {
-        Query query = em.createNativeQuery(sql, expectType);
-        querySqlParams(query, args);
-        query.setMaxResults(top);
-        return query.getResultList();
+        return listSqlResult(expectType, sql, null, top, args);
     }
 
     /**
@@ -395,10 +355,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> topResultHql(Class<T> expectType, int top, String hql, Object... args) {
-        Query query = em.createQuery(hql, expectType);
-        queryHqlParams(query, args);
-        query.setMaxResults(top);
-        return query.getResultList();
+        return listHqlResult(expectType, hql, null, top, args);
     }
 
     /**
@@ -443,11 +400,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<?> hqlPager(String hql, int page, int pageSize, Object... args) {
-        Query query = em.createQuery(hql);
-        query.setFirstResult(page * pageSize);
-        query.setMaxResults(pageSize);
-        queryHqlParams(query, args);
-        return query.getResultList();
+        return listHqlResult(null, hql, page * pageSize, pageSize, args);
     }
 
     /**
@@ -463,11 +416,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> hqlPager(Class<T> expectType, String hql, int page, int pageSize, Object... args) {
-        Query query = em.createQuery(hql, expectType);
-        queryHqlParams(query, args);
-        query.setFirstResult(page * pageSize);
-        query.setMaxResults(pageSize);
-        return query.getResultList();
+        return listHqlResult(expectType, hql, page * pageSize, pageSize, args);
     }
 
     /**
@@ -482,11 +431,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<?> sqlPager(String sql, int page, int pageSize, Object... args) {
-        Query query = em.createNativeQuery(sql);
-        query.setFirstResult(page * pageSize);
-        query.setMaxResults(pageSize);
-        querySqlParams(query, args);
-        return query.getResultList();
+        return listSqlResult(null, sql, page * pageSize, pageSize, args);
     }
 
     /**
@@ -502,11 +447,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public <T> List<T> sqlPager(Class<T> expectType, String sql, int page, int pageSize, Object... args) {
-        Query query = em.createNativeQuery(sql, expectType);
-        querySqlParams(query, args);
-        query.setFirstResult(page * pageSize);
-        query.setMaxResults(pageSize);
-        return query.getResultList();
+        return listSqlResult(expectType, sql, page * pageSize, pageSize, args);
     }
 
     /**
@@ -525,13 +466,128 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
     public <T> List<T> hqlPager(Class<T> expectType, Map<String, Object> params, List<Sort.Order> orders, int page, int pageSize) {
         StringBuilder hql = new StringBuilder("from ").append(expectType.getName()).append(" where 1=1 ");
         Object[] args = assemble(hql, params, null, orders);
-        Query query = em.createQuery(hql.toString());
-        if (args != null) {
+
+        return listHqlResult(null, hql.toString(), page * pageSize, pageSize, args);
+    }
+
+    /**
+     * hql list返回
+     *
+     * @param expectType  返回对象
+     * @param hql         hql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> List<T> listHqlResult(Class<T> expectType, String hql, Integer firstResult, Integer maxResult, Object... args) {
+        return hqlQuery(expectType, hql, firstResult, maxResult, args).getResultList();
+    }
+
+    /**
+     * hql single返回
+     *
+     * @param expectType  返回对象
+     * @param hql         hql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> Object singleHqlResult(Class<T> expectType, String hql, Integer firstResult, Integer maxResult, Object... args) {
+        return hqlQuery(expectType, hql, firstResult, maxResult, args).getSingleResult();
+    }
+
+    /**
+     * sql list返回
+     *
+     * @param expectType  返回对象
+     * @param sql         sql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> List<T> listSqlResult(Class<T> expectType, String sql, Integer firstResult, Integer maxResult, Object... args) {
+        return sqlQuery(expectType, sql, firstResult, maxResult, args).getResultList();
+    }
+
+    /**
+     * sql single返回
+     *
+     * @param expectType  返回对象
+     * @param sql         sql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> Object singleSqlResult(Class<T> expectType, String sql, Integer firstResult, Integer maxResult, Object... args) {
+        return sqlQuery(expectType, sql, firstResult, maxResult, args).getSingleResult();
+    }
+
+    /**
+     * 组装hql Query
+     *
+     * @param expectType  返回对象
+     * @param hql         hql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> Query hqlQuery(Class<T> expectType, String hql, Integer firstResult, Integer maxResult, Object... args) {
+        Query query = null;
+        if (expectType != null) {
+            query = em.createQuery(hql, expectType);
+        } else {
+            query = em.createQuery(hql);
+        }
+        if (firstResult != null) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResult != null) {
+            query.setMaxResults(maxResult);
+        }
+        if (!ArrayUtils.isEmpty(args)) {
             queryHqlParams(query, args);
         }
-        query.setFirstResult(page * pageSize);
-        query.setMaxResults(pageSize);
-        return query.getResultList();
+        return query;
+    }
+
+    /**
+     * 组装sql Query
+     *
+     * @param expectType  返回对象
+     * @param sql         sql语句
+     * @param firstResult 开始位置
+     * @param maxResult   最大记录数
+     * @param args        参数
+     * @param <T>         返回泛型
+     * @return
+     */
+    private <T> Query sqlQuery(Class<T> expectType, String sql, Integer firstResult, Integer maxResult, Object... args) {
+        Query query;
+        if (expectType != null) {
+            query = em.createNativeQuery(sql, expectType);
+        } else {
+            query = em.createNativeQuery(sql);
+        }
+        if (firstResult != null) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResult != null) {
+            query.setMaxResults(maxResult);
+        }
+        if (!ArrayUtils.isEmpty(args)) {
+            querySqlParams(query, args);
+        }
+        return query;
     }
 
     /**
