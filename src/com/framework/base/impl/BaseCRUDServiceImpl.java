@@ -447,7 +447,7 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
      *
      * @param expectType 查询entity实体类型
      * @param params     参数集合
-     * @param orders     排序集合
+     * @param sort       排序集合
      * @param page       页码 （从0开始）
      * @param pageSize   每页大小
      * @param <T>        返回集合类型
@@ -455,9 +455,9 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
      */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public <T> List<T> hqlPager(Class<T> expectType, Map<String, Object> params, List<Sort.Order> orders, int page, int pageSize) {
+    public <T> List<T> hqlPager(Class<T> expectType, Map<String, Object> params, Sort sort, int page, int pageSize) {
         StringBuilder hql = new StringBuilder("from ").append(expectType.getName()).append(" where 1=1 ");
-        Object[] args = assemble(hql, params, null, orders);
+        Object[] args = assemble(hql, params, null, sort);
 
         return listHqlResult(null, hql.toString(), page * pageSize, pageSize, args);
     }
@@ -588,10 +588,10 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
      * @param sb     sql|hql语句
      * @param params 参数集合
      * @param groups 分组集合
-     * @param orders 排序字段集合
+     * @param sort   排序字段集合
      * @return
      */
-    private Object[] assemble(StringBuilder sb, Map<String, Object> params, List<String> groups, List<Sort.Order> orders) {
+    private Object[] assemble(StringBuilder sb, Map<String, Object> params, List<String> groups, Sort sort) {
         Object[] args = null;
         //***********参数拼装*************
         if (!CollectionUtils.isEmpty(params)) {
@@ -613,16 +613,19 @@ public class BaseCRUDServiceImpl implements BaseCRUDService {
             }
         }
         //***********order拼装*************
-        if (!CollectionUtils.isEmpty(orders)) {
+        if (sort != null) {
             sb.append(" order by ");
-            for (int i = 0; i < orders.size(); i++) {
-                if (i != 0) {
+            boolean first = true;
+            for (Sort.Order order : sort) {
+                if (first) {
+                    first = false;
+                } else {
                     sb.append(", ");
                 }
-                Sort.Order order = orders.get(i);
                 sb.append(order.getProperty()).append(" ").append(order.getDirection().name());
             }
         }
+
         return args;
     }
 

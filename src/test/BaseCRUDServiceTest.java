@@ -11,14 +11,17 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wang on 2016/12/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:/applicationContext.xml")
-public class BaseCRUDServiceImplTest extends AbstractJUnit4SpringContextTests {
+public class BaseCRUDServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private BaseCRUDService crudService;
@@ -161,11 +164,11 @@ public class BaseCRUDServiceImplTest extends AbstractJUnit4SpringContextTests {
     public void hqlPagerTest() {
         Map<String, Object> params = new HashMap<>();
         params.put("path", "#####");
-        List<Demo> demos = crudService.hqlPager(Demo.class, params, Arrays.asList(
-                new Sort.Order(Sort.Direction.ASC, "createTime")), 1, 5);
+        List<Demo> demos = crudService.hqlPager(Demo.class, params, new Sort(new Sort.Order(Sort.Direction.ASC, "parent_id"), new Sort.Order(Sort.Direction.DESC, "id")), 1, 5);
         for (Demo demo : demos) {
             System.out.println(demo.toString());
         }
+        new Sort(new Sort.Order(Sort.Direction.ASC, "createTime"));
     }
 
     @Test

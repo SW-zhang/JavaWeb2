@@ -1,4 +1,4 @@
-本项目是 springmvc + Spring data jpa 开发环境（spring：4.3.4  hibernate-entitymanager：5.2.6）
+本项目是 springmvc + Spring data jpa + Spring data mongodb 开发环境（spring：4.3.4  hibernate-entitymanager：5.2.6）
 本项目要求：
         jdk 1.8+
         业务类放在com.services包下

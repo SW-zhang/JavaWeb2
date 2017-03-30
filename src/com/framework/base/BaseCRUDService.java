@@ -326,12 +326,12 @@ public interface BaseCRUDService {
      *
      * @param expectType 查询entity实体类型
      * @param params     参数集合
-     * @param orders     排序集合
+     * @param sort       排序集合
      * @param page       页码 （从0开始）
      * @param pageSize   每页大小
      * @param <T>        返回集合类型
      * @return
      */
 
-    <T> List<T> hqlPager(Class<T> expectType, Map<String, Object> params, List<Sort.Order> orders, int page, int pageSize);
+    <T> List<T> hqlPager(Class<T> expectType, Map<String, Object> params, Sort sort, int page, int pageSize);
 }
