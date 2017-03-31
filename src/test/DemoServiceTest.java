@@ -59,4 +59,10 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
     public void demoDaoImplTest() {
         System.out.println(JSON.toJSONString(demoService.findAll()));
     }
+
+    @Test
+    public void cacheTest() {
+        System.out.println(demoService.findOne(1L).toString());
+        System.out.println(demoService.findOne(1L).toString());
+    }
 }

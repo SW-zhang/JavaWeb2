@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 使用外部属性文件配置 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/redis.properties"/>
+
+    <!-- cache注解自动扫描 -->
+    <cache:annotation-driven/>
+
+    <!-- 本机内存作为cache -->
+    <!--<bean id="cacheManager" class="org.springframework.cache.concurrent.ConcurrentMapCacheManager"/>-->
+
+    <!-- redis 作为缓存cache -->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg name="redisOperations" ref="redisTemplate"/>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="redisFactory"/>
+    </bean>
+
+    <bean id="redisFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="usePool" value="true"/>
+        <property name="poolConfig" ref="poolConfig"/>
+    </bean>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.pool.max_idle}"/>
+        <property name="maxTotal" value="${redis.pool.max_active}"/>
+        <property name="maxWaitMillis" value="${redis.pool.max_wait}"/>
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+</beans>

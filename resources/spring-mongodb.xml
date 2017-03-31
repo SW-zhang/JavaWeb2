@@ -6,7 +6,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
     http://www.springframework.org/schema/data/mongo
-    http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
 
 
     <!-- 使用外部属性文件配置 -->

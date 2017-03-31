@@ -20,7 +20,7 @@ import java.util.List;
 @Service("mongoCrudService")
 public class MongoCRUDServiceImpl implements MongoCRUDService {
 
-    @Autowired
+//    @Autowired
     private MongoOperations mongo;
 
     @Override

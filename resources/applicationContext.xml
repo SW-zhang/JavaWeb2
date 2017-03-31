@@ -16,10 +16,11 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <!-- aop注解自动扫描 -->
     <aop:aspectj-autoproxy/>
 
     <!-- 使用外部属性文件配置 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/application.properties" />
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/application.properties"/>
     <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -54,7 +55,8 @@
     </bean>
 
     <!-- Spring Data Jpa配置 -->
-    <jpa:repositories base-package="com.**.**.**.dao" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+    <jpa:repositories base-package="com.**.**.**.dao" transaction-manager-ref="transactionManager"
+                      entity-manager-factory-ref="entityManagerFactory"/>
     <!-- Jpa 事务配置 -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
@@ -95,10 +97,13 @@
         </property>
     </bean>
     <bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <property name="templateLoaderPath" value="classpath:emailtemplates" />
+        <property name="templateLoaderPath" value="classpath:emailtemplates"/>
     </bean>
 
     <!-- 引入mongodb的相关配置 -->
-    <import resource="classpath*:/spring-mongodb.xml"/>
+    <!--<import resource="classpath*:/spring-mongodb.xml"/>-->
+
+    <!-- 引入cache的相关配置 -->
+    <import resource="classpath*:/spring-cache.xml"/>
 
 </beans>

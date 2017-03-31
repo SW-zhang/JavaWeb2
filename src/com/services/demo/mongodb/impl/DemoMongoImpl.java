@@ -15,7 +15,7 @@ import java.util.List;
  **/
 public class DemoMongoImpl implements DemoMongoSweeper {
 
-    @Autowired
+//    @Autowired
     private MongoOperations mongo;
 
     @Override

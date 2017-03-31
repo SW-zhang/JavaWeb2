@@ -1,7 +1,7 @@
 package com.services.demo.servcie;
 
-import com.framework.base.BaseService;
 import com.framework.base.BaseCRUDService;
+import com.framework.base.BaseService;
 import com.framework.querycore.Criteria;
 import com.framework.querycore.Criterion;
 import com.framework.querycore.PageParam;
@@ -9,6 +9,9 @@ import com.framework.querycore.Restrictions;
 import com.services.demo.dao.DemoDao;
 import com.services.demo.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -48,6 +51,7 @@ public class DemoService extends BaseService {
      * @param keys
      * @return
      */
+    @Cacheable("allDemosCache")
     public List<Demo> findAll(List<String> keys) {
         Criteria<Demo> c = new Criteria<>();
         Criterion[] criterions = new Criterion[keys.size() * 2];
@@ -69,19 +73,27 @@ public class DemoService extends BaseService {
     }
 
     @Transactional
-    public void add(Demo demo) {
+    @CachePut(value = "demoCache", key = "#result.id")
+    public Demo add(Demo demo) {
         demo.setId(null);
         demo.setCreateTime(new Date());
         demo.setName("测试444");
         demo.setPath("#####");
-        demoDao.save(demo);
+        return demoDao.save(demo);
     }
 
     public List<Demo> list() {
         return demoDao.findAll();
     }
 
+    @Cacheable("demoCache")
     public Demo findOne(Long id) {
         return demoDao.findOne(id);
+    }
+
+    @Transactional
+    @CacheEvict("demoCache")
+    public void remove(Long id) {
+        demoDao.delete(id);
     }
 }
