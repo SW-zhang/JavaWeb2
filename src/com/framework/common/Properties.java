@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
  **/
 @Configuration
 @PropertySources({
-        @PropertySource("classpath:application.properties"),
-        @PropertySource("classpath:mongodb.properties"),
+        @PropertySource("classpath:application.properties")
 })
 @Service
 public class Properties {

@@ -90,9 +90,6 @@
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
                 <prop key="mail.smtp.auth">true</prop>
-                <!-- true for Gamil
-                <prop key="mail.smtp.starttls.enable">false</prop>
-                <prop key="mail.debug">true</prop>-->
             </props>
         </property>
     </bean>
@@ -104,6 +101,9 @@
     <!--<import resource="classpath*:/spring-mongodb.xml"/>-->
 
     <!-- 引入cache的相关配置 -->
-    <import resource="classpath*:/spring-cache.xml"/>
+    <!--<import resource="classpath*:/spring-cache.xml"/>-->
+
+    <!-- 引入rmi相关配置 -->
+    <!--<import resource="classpath*:/spring-rmi.xml"/>-->
 
 </beans>

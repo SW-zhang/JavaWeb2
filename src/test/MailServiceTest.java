@@ -29,7 +29,7 @@ public class MailServiceTest extends AbstractJUnit4SpringContextTests {
         params.put("user", "张树旺");
         Map<String, File> images = new HashMap<>();
         images.put("file", new File("C:\\Users\\wang\\Desktop\\111.png"));
-        emailService.sendMessage(new String[]{"740787932@qq.com"}, "测试主题", "demo", params, images, new File("C:\\Users\\wang\\Desktop\\remark"));
+        emailService.sendMessage(new String[]{"740787932@qq.com"}, "测试主题", "demo.vm", params, images, new File("C:\\Users\\wang\\Desktop\\remark"));
     }
 
     @Test
