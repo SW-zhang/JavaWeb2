@@ -62,6 +62,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .exceptionHandling()//权限验证失败跳转到403 forbidden 页面
                 .accessDeniedHandler(new MyAccessDeniedHandler("/403"))
                 .and()
-            .csrf().disable();
+            .csrf();
     }
 }

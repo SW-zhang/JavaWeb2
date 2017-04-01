@@ -2,14 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isELIgnored="false" %>
 
 <c:set var="ctx" value="${basePath}"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login</title>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-    <link rel="stylesheet" href="${ctx}/static/css/login.css">
+<link rel="stylesheet" href="${ctx}/static/css/login.css">
     <script src="${ctx}/static/js/jquery-1.11.3.min.js"></script>
 </head>
     <body onload="document.login_form.username.focus()">
@@ -18,8 +21,7 @@
                 <h2>Login</h2>
                 <div class="clear"></div>
             </div>
-            <form name="login_form" th:action="${ctx}/login" method="post">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <form:form name="login_form" th:action="${ctx}/login" method="post">
                 <div class="error-msg">
                     <c:if test="${param.error != null}">
                         <p>用户名或密码不正确.</p>
@@ -46,7 +48,7 @@
                 <div class="button-control">
                     <input type="submit" value="登  录"/>
                 </div>
-            </form>
+            </form:form>
         </div>
     </body>
 </html>

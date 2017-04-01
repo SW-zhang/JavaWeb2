@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="page" uri="/WEB-INF/pagerTag.tld" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:set var="ctx" value="${basePath}"/>
 <!DOCTYPE html>
@@ -17,6 +18,8 @@
     <meta http-equiv="Cache-Control" content="no-store"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <link rel="stylesheet" href="${ctx }/static/css/bootstrap.css">
     <link rel="stylesheet" href="${ctx }/static/css/page/pagetable.css">
