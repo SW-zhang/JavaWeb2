@@ -8,7 +8,8 @@
     <title>错误页面</title>
 </head>
 <body>
-<h3>访问被拒绝</h3>
+<h1>HTTP Status 403 - Access is denied</h1>
+<h3>Message : You do not have permission to access this page!</h3>
 
 </body>
 </html>

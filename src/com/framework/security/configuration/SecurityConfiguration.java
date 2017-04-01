@@ -43,13 +43,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/configuration/**").hasAnyAuthority("ADMIN", "MANAGER")//必须有ADMIN || MANAGER 的权限才能访问
                 .antMatchers("/admin/**").hasAuthority("ADMIN")//必须有ADMIN权限才能访问
                 .antMatchers("/demo/**").hasAuthority("ADMIN")//必须有ADMIN权限才能访问
+                .antMatchers("/**").permitAll();
 
-                //修改登陆页面 以及 默认登陆成功跳转的页面
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/index")
-                //添加rememberMe功能（会在cookie中存储一个token 这个token 被设置4周内有效 2419200秒）
-                .and().rememberMe().tokenValiditySeconds(2419200).key("securityKey")
-                //权限验证失败跳转到403 forbidden 页面
-                .and().exceptionHandling().accessDeniedPage("/403")
-                .and().csrf();
+        otherConfigure(http);
+    }
+
+    private void otherConfigure(HttpSecurity http) throws Exception {
+        http.formLogin()//修改登陆页面 以及 默认登陆成功跳转的页面
+                .loginPage("/login")
+                .defaultSuccessUrl("/index")
+                .and()
+            .rememberMe()//添加rememberMe功能（会在cookie中存储一个token 这个token 被设置4周内有效 2419200秒）
+                .rememberMeParameter("remember_me")
+                .tokenValiditySeconds(2419200)
+                .key("securityToken")
+                .rememberMeCookieName("securityToken")
+                .and()
+            .exceptionHandling()//权限验证失败跳转到403 forbidden 页面
+                .accessDeniedHandler(new MyAccessDeniedHandler("/403"))
+                .and()
+            .csrf().disable();
     }
 }

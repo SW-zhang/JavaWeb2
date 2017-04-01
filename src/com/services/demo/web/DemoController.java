@@ -1,15 +1,18 @@
 package com.services.demo.web;
 
-import com.framework.querycore.PageParam;
-import com.framework.common.Properties;
 import com.framework.common.AjaxResult;
+import com.framework.common.Properties;
+import com.framework.querycore.PageParam;
+import com.framework.security.SecurityContext;
 import com.services.demo.entity.Demo;
-import com.services.demo.servcie.impl.DemoServiceImpl;
+import com.services.demo.servcie.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
@@ -25,7 +28,7 @@ import java.util.Map;
 public class DemoController {
 
     @Autowired
-    private DemoServiceImpl demoService;
+    private DemoService demoService;
 
     @Autowired
     private Properties properties;
@@ -63,12 +66,22 @@ public class DemoController {
 
     @RequestMapping(value = "/add")
     @ResponseBody
-    public AjaxResult add(@Valid Demo demo, Errors errors) {
+    public AjaxResult add(Demo demo, Errors errors) {
         try {
-            if (errors.hasErrors()) {
-                return error(errors);
-            }
             demoService.add(demo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.error("异常");
+        }
+        return AjaxResult.success();
+    }
+
+    @RequestMapping(value = "/addListDemos")
+    @ResponseBody
+    public AjaxResult addListDemos(@RequestBody List<Demo> demos) {
+        try {
+//            demoService.add(demo);
+            System.out.println(demos);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResult.error("异常");

@@ -20,7 +20,7 @@ public class SystemInterceptor extends HandlerInterceptorAdapter {
         String url = request.getRequestURI();
         log.info("[" + url + "]---[params:" + JSON.toJSONString(request.getParameterMap()) + "]");
 
-        System.out.println("you can do something");
+//        System.out.println("you can do something");
 
 //        if (request.getSession().getAttribute("user") == null) {
 //            response.sendRedirect(request.getContextPath() + "/index");

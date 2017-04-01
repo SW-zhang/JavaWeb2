@@ -5,18 +5,18 @@
 	        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
     <!-- 服务端发布服务 -->
-    <bean id="serviceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
         <property name="serviceName" value="rmiDemoService"/>
-        <property name="service" ref="rmiDemoService"/>
+        <property name="service" ref="rmiDemoServiceImpl"/>
         <property name="serviceInterface" value="com.services.rmi.RmiDemoService"/>
         <property name="registryPort" value="1199"/>
     </bean>
 
-    <bean id="rmiDemoService" class="com.services.rmi.impl.RmiDemoServiceImpl"/>
+    <bean id="rmiDemoServiceImpl" class="com.services.rmi.impl.RmiDemoServiceImpl"/>
 
-    <!-- 客户端调用服务
+    <!-- 客户端调用服务的配置
     <bean id="demoServiceClient" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://127.0.0.1:1199/demoService"/>
+        <property name="serviceUrl" value="rmi://127.0.0.1:1199/rmiDemoService"/>
         <property name="serviceInterface" value="com.services.demo.servcie.DemoService"/>
     </bean>-->
 </beans>
