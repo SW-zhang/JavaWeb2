@@ -3,12 +3,11 @@ package com.services.demo.web;
 import com.framework.common.AjaxResult;
 import com.framework.common.Properties;
 import com.framework.querycore.PageParam;
-import com.framework.security.SecurityContext;
 import com.services.demo.entity.Demo;
 import com.services.demo.servcie.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +46,12 @@ public class DemoController {
         view.addObject("pageParam", request.getParameterMap());
         view.setViewName("/demo/pager_demo");
         return view;
+    }
+
+    @RequestMapping(value = "/xx/{id}")
+    public String xx(@PathVariable Long id, Model model) {
+        model.addAttribute("Demo", demoService.findOne(id));
+        return "/demo/xx";
     }
 
     @RequestMapping(value = "/detail/{id}")

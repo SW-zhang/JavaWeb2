@@ -34,15 +34,14 @@
     </mvc:interceptors>
 
     <!--对转向页面的路径解析。prefix：前缀， suffix：后缀-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/pages/" p:suffix=".jsp"/>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/pages/" p:suffix=".jsp"/>-->
 
-    <!--<bean id="viewResolver"
-          class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="contentNegotiationManager" ref="cnManager"/>
-        <property name="viewResolvers">&lt;!&ndash;针对freemarker的视图配置&ndash;&gt;
+        <property name="viewResolvers">
             <list>
-                <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+                <!--<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
                     <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
                     <property name="viewNames" value=".ftl"/>
                     <property name="contentType" value="text/html; charset=utf-8"/>
@@ -50,7 +49,7 @@
                     <property name="prefix" value=""/>
                     <property name="suffix" value=""/>
                     <property name="order" value="2"/>
-                </bean>
+                </bean>-->
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="prefix" value="/WEB-INF/pages/"/>
                     <property name="suffix" value=".jsp"/>
@@ -59,10 +58,7 @@
         </property>
         <property name="defaultViews">
             <list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-                    <property name="prettyPrint" value="true"/>
-                    <property name="contentType" value="text/plain"/>
-                </bean>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
                 <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
                     <property name="marshaller">
                         <bean class="org.springframework.oxm.xstream.XStreamMarshaller"/>
@@ -72,18 +68,21 @@
         </property>
     </bean>
     <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- 是否忽略请求头里的Accept Header属性，为了解决不同浏览器中对应不同的accept -->
         <property name="ignoreAcceptHeader" value="true"/>
+        <!-- 是否从扩展名中取mediaType(如xxx.xml,xxx.html),与mediaTypes匹配 -->
         <property name="favorPathExtension" value="true"/>
+        <!-- 设置在没有扩展名时，即: "/user/find" 时的默认展现形式 -->
         <property name="defaultContentType" value="text/html"/>
+        <!-- 是否从请求的url路径中获取 mediaType(如:/xxx/xxx?mediaType=xml),与mediaTypes匹配 -->
         <property name="favorParameter" value="true"/>
         <property name="mediaTypes">
             <map>
                 <entry key="xml" value="application/xml"/>
-                <entry key="json" value="text/plain"/>
-                <entry key="xls" value="application/vnd.ms-excel"/>
+                <entry key="json" value="application/json"/>
             </map>
         </property>
-    </bean>-->
+    </bean>
 
     <!-- 文件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>

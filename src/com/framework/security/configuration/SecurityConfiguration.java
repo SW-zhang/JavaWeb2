@@ -42,7 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()//无条件允许访问
                 .antMatchers("/configuration/**").hasAnyAuthority("ADMIN", "MANAGER")//必须有ADMIN || MANAGER 的权限才能访问
                 .antMatchers("/admin/**").hasAuthority("ADMIN")//必须有ADMIN权限才能访问
-                .antMatchers("/demo/**").hasAuthority("ADMIN")//必须有ADMIN权限才能访问
                 .antMatchers("/**").permitAll();
 
         otherConfigure(http);
