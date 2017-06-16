@@ -6,7 +6,7 @@ apply plugin: 'war'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version ''
+version '1.0.0'
 group 'JavaWeb'
 
 repositories {
@@ -16,16 +16,15 @@ repositories {
 }
 
 dependencies {
-//    compile fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: 'lib', include: '*.jar')
 
     compile 'org.slf4j:slf4j-api:1.7.22'
     compile 'log4j:log4j:1.2.17'
     compile 'org.slf4j:slf4j-log4j12:1.7.22'
     compile 'junit:junit:4.12'
     compile 'javax.transaction:jta:1.1'
-    // 工具
+
     compile 'com.alibaba:fastjson:1.2.17'
-//    compile 'com.netflix.feign:feign-jackson:8.18.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'cglib:cglib:3.2.4'
@@ -68,11 +67,9 @@ dependencies {
     compile 'org.springframework.security:spring-security-web:4.2.1.RELEASE'
 
 //    compile 'org.springframework:spring-asm:4.3.4.RELEASE'
-//    compile 'org.springframework:spring-oxm:4.3.4.RELEASE'
 
 
     compile 'org.hibernate:hibernate-entitymanager:5.2.6.Final'
-//    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
 
     //发送邮件
     compile 'javax.mail:javax.mail-api:1.5.6'
