@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -19,7 +18,7 @@
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->
     <mvc:default-servlet-handler/>
     <!-- 注解扫描 自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <!-- 静态资源-->
     <!--<mvc:resources location="/static/" mapping="/static/**"/>-->
 
@@ -32,7 +31,13 @@
             <bean class="com.framework.interceptor.SystemInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.framework.interceptor.DateConverter"/>
+            </set>
+        </property>
+    </bean>
     <!--对转向页面的路径解析。prefix：前缀， suffix：后缀-->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/pages/" p:suffix=".jsp"/>-->
