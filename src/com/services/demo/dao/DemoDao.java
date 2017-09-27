@@ -11,7 +11,7 @@ import java.util.List;
 @SuppressWarnings("JpaQlInspection")
 public interface DemoDao extends BaseDao<Demo, Long>, DemoSweeper {
 
-    @Query(value = "select count(id) from demo where path = ?1", nativeQuery = true)
+    @Query(value = "select count(id) from #{#entityName} where path = ?1", nativeQuery = true)
     long count(String path);
 
     @Query("select count(id) from Demo where level = ?1")
@@ -31,4 +31,6 @@ public interface DemoDao extends BaseDao<Demo, Long>, DemoSweeper {
     @Query(value = "select d from demo d join user_func uf on d.id = uf.func_id where uf.user_id = ?1", nativeQuery = true)
     List<Demo> findByUserId(Long user_id);
 
+    @Query("from Demo where path like %?1%")
+    List<Demo> findIdByPathLike(String path);
 }

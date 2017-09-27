@@ -3,12 +3,14 @@ package test;
 import com.alibaba.fastjson.JSON;
 import com.framework.common.Properties;
 import com.framework.querycore.PageParam;
+import com.services.demo.dao.DemoDao;
 import com.services.demo.entity.Demo;
 import com.services.demo.servcie.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,6 +26,8 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private DemoService demoService;
+    @Autowired
+    private DemoDao demoDao;
 
     @Autowired
     private Properties properties;
@@ -64,5 +68,12 @@ public class DemoServiceTest extends AbstractJUnit4SpringContextTests {
     public void cacheTest() {
         System.out.println(demoService.findOne(1L).toString());
         System.out.println(demoService.findOne(1L).toString());
+    }
+
+    @Test
+    public void daoLikeTest() {
+        Pageable pageable = new PageParam(0, 1);
+        Page<Demo> page = demoDao.findAll(pageable);
+        System.out.println(JSON.toJSONString(page));
     }
 }

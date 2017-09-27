@@ -29,20 +29,27 @@ public class ControllerExceptionHandler extends SimpleMappingExceptionResolver {
         model.put("error", ex.getMessage());
         log.error("====================Controller-ERROR-[" + request.getRequestURI() + "]-BEGIN====================");
         log.error(ex.toString());
-        ex.printStackTrace();
+        StackTraceElement[] element = ex.getStackTrace();
+        for (StackTraceElement anElement : element) {
+            log.error(Thread.currentThread().toString() + " position:" + anElement);
+        }
         log.error("====================Controller-ERROR-[" + request.getRequestURI() + "]-END====================");
         //如果是ajax请求，response回写类型的异常处理，将异常写入response中提供前台处理
         if ("XMLHttpRequest".equals(requestType)) {
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
-            PrintWriter out;
+            PrintWriter out = null;
             try {
                 out = response.getWriter();
                 out.println(ex.toString());
                 out.flush();
-                out.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                if (out != null) {
+                    out.close();
+                }
+
             }
             return null;
         } else {    //跳转类异常处理，直接跳转至异常提示页面
